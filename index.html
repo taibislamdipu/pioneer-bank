@@ -36,7 +36,7 @@
             <div class="col-md-4">
                 <div class="withdraw status">
                     <h5>Withdraw</h5>
-                    <h2>$00</h2>
+                    <h2>$ <span id="currentWithdraw">00</span></h2>
                 </div>
             </div>
             <div class="col-md-4">
@@ -89,17 +89,9 @@
                 const depositNumber = getInputNumber("depositAmount");
 
                 updateSpanText("currentDeposit", depositNumber);  // set current deposit number
-
-                updateSpanText("currentBalance", depositNumber); // set total balance, by calling the function
+                updateSpanText("currentBalance", -1 * depositNumber); // set total balance, by calling the function
 
                 document.getElementById("depositAmount").value = "";
-
-                function updateSpanText(id, depositNumber) {
-                    const current = document.getElementById(id).innerText;
-                    const currentNumber = parseFloat(current);
-                    const totalAmount = depositNumber + currentNumber;
-                    document.getElementById(id).innerText = totalAmount; // set total balance
-                }
 
             })
 
@@ -107,13 +99,28 @@
             const withdrawBtn = document.getElementById("addWithdraw");
             withdrawBtn.addEventListener("click", function () {
                 const withdrawNumber = getInputNumber("withdrawAmount");
-                console.log(withdrawNumber);
+
+                updateSpanText("currentWithdraw", withdrawNumber);
+                updateSpanText("currentBalance", withdrawNumber);
+
+
+                document.getElementById("withdrawAmount").value = "";
+
             })
+
+
 
             function getInputNumber(id) {
                 const amount = document.getElementById(id).value;
                 const amountNumber = parseFloat(amount);
                 return amountNumber;
+            }
+
+            function updateSpanText(id, depositNumber) {
+                const current = document.getElementById(id).innerText;
+                const currentNumber = parseFloat(current);
+                const totalAmount = depositNumber + currentNumber;
+                document.getElementById(id).innerText = totalAmount; // set total balance
             }
 
         })
