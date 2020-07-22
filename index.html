@@ -89,7 +89,7 @@
                 const depositNumber = getInputNumber("depositAmount");
 
                 updateSpanText("currentDeposit", depositNumber);  // set current deposit number
-                updateSpanText("currentBalance", -1 * depositNumber); // set total balance, by calling the function
+                updateSpanText("currentBalance", depositNumber); // set total balance, by calling the function
 
                 document.getElementById("depositAmount").value = "";
 
@@ -101,7 +101,7 @@
                 const withdrawNumber = getInputNumber("withdrawAmount");
 
                 updateSpanText("currentWithdraw", withdrawNumber);
-                updateSpanText("currentBalance", withdrawNumber);
+                updateSpanText("currentBalance", -1 * withdrawNumber);
 
 
                 document.getElementById("withdrawAmount").value = "";
